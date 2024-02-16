@@ -141,6 +141,10 @@ def compute_increments (time_series, first_year, last_year):
     if first_year == last_year:
         raise ExamException('Errore: i due anni sono uguali')
     
+    # Se first_year è maggiore di last_year scambio i due valori
+    if first_year > last_year:
+        first_year, last_year = last_year, first_year
+    
     # Creo una lista 'years_psg' dove le date sono spezzate per anno, e il secondo elemento sono i passeggeri
     years_psg = []
     
@@ -175,10 +179,6 @@ def compute_increments (time_series, first_year, last_year):
         # Se i due anni non sono consecutivi ritorno un errore
         else:
             raise ExamException('Errore: uno dei due anni non è presente')
-    
-    # Se first_year è maggiore di last_year scambio i due valori
-    if first_year > last_year:
-        first_year, last_year = last_year, first_year
     
     # Creo un dizionario vuoto
     incr = {}
